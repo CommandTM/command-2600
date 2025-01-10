@@ -13,26 +13,26 @@
 - [ ] Clock
 
 # OPCodes Recreation
-- [x] CPU Memory and Register Transfers
-- [ ] CPU Arithmetic/Logical Operations
-  - [ ] Add Memory to Accumulator with Carry
-  - [ ] Subtract Memory from Accumulator with Borrow
-  - [ ] Logical AND Memory with Accumulator
-  - [ ] Exclusive-OR Memory with Accumulator
-  - [ ] Logical OR Memory with Accumulator
-  - [ ] Compare
-  - [ ] Bit Test
-  - [ ] Increment By One
-  - [ ] Decrement by One
-- [ ] CPU Rotate and Shift Instructions
-  - [ ] Shift Left Logical/Arithmetic
-  - [ ] Shift Right Logical
-  - [ ] Rotate Left Through Carry
-  - [ ] Rotate Right Through Carry
-- [ ] CPU Jump And Control Instructions
-  - [ ] Normal Jumps and Subroutine Calls/Returns
-  - [ ] Conditional Branches
+- [x] CPU Memory and Register Transfers ![100%](https://progress-bar.xyz/100)
+- [ ] CPU Arithmetic/Logical Operations ![7%](https://progress-bar.xyz/7)
+  - [ ] Add Memory to Accumulator with Carry ![12.5%](https://progress-bar.xyz/12)
+  - [ ] Subtract Memory from Accumulator with Borrow ![0%](https://progress-bar.xyz/0)
+  - [ ] Logical AND Memory with Accumulator ![0%](https://progress-bar.xyz/0)
+  - [ ] Exclusive-OR Memory with Accumulator ![0%](https://progress-bar.xyz/0)
+  - [ ] Logical OR Memory with Accumulator ![0%](https://progress-bar.xyz/0)
+  - [ ] Compare ![0%](https://progress-bar.xyz/0)
+  - [ ] Bit Test ![0%](https://progress-bar.xyz/0)
+  - [ ] Increment By One ![33%](https://progress-bar.xyz/33)
+  - [ ] Decrement by One ![33%](https://progress-bar.xyz/33)
+- [ ] CPU Rotate and Shift Instructions ![5%](https://progress-bar.xyz/5)
+  - [ ] Shift Left Logical/Arithmetic ![20%](https://progress-bar.xyz/20)
+  - [ ] Shift Right Logical ![0%](https://progress-bar.xyz/0)
+  - [ ] Rotate Left Through Carry ![0%](https://progress-bar.xyz/0)
+  - [ ] Rotate Right Through Carry ![0%](https://progress-bar.xyz/0)
+- [ ] CPU Jump And Control Instructions ![41%](https://progress-bar.xyz/41)
+  - [ ] Normal Jumps and Subroutine Calls/Returns ![20%](https://progress-bar.xyz/20)
+  - [ ] Conditional Branches ![100%](https://progress-bar.xyz/100)
   - [ ] Interrupts, Exceptions, Breakpoints
-  - [ ] CPU Control
-  - [ ] No Operation
-- [ ] CPU Illegal OPcodes
+  - [ ] CPU Control ![0%](https://progress-bar.xyz/0)
+  - [ ] No Operation ![0%](https://progress-bar.xyz/0)
+- [ ] CPU Illegal OPcodes ![0%](https://progress-bar.xyz/0)
