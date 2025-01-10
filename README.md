@@ -32,7 +32,7 @@
 - [ ] CPU Jump And Control Instructions ![41%](https://progress-bar.xyz/41)
   - [ ] Normal Jumps and Subroutine Calls/Returns ![20%](https://progress-bar.xyz/20)
   - [ ] Conditional Branches ![100%](https://progress-bar.xyz/100)
-  - [ ] Interrupts, Exceptions, Breakpoints
+  - [ ] Interrupts, Exceptions, Breakpoints ![0%](https://progress-bar.xyz/0)
   - [ ] CPU Control ![0%](https://progress-bar.xyz/0)
   - [ ] No Operation ![0%](https://progress-bar.xyz/0)
 - [ ] CPU Illegal OPcodes ![0%](https://progress-bar.xyz/0)
