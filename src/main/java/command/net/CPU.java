@@ -68,6 +68,7 @@ public class CPU {
             case 0x10 -> BPL(arg0);
             case 0x11 -> yWordORA(arg0);
             case 0x15 -> xMemORA(arg0);
+            case 0x18 -> CLC();
             case 0x19 -> yORA(arg0, arg1);
             case 0x1D -> xORA(arg0, arg1);
             case 0x21 -> wordAND(arg0);
@@ -78,6 +79,7 @@ public class CPU {
             case 0x30 -> BMI(arg0);
             case 0x31 -> yWordAND(arg0);
             case 0x35 -> xMemAND(arg0);
+            case 0x38 -> SEC();
             case 0x39 -> yAND(arg0, arg1);
             case 0x3D -> xAND(arg0, arg1);
             case 0x41 -> wordEOR(arg0);
@@ -89,6 +91,7 @@ public class CPU {
             case 0x50 -> BVC(arg0);
             case 0x51 -> yWordEOR(arg0);
             case 0x55 -> xMemEOR(arg0);
+            case 0x58 -> CLI();
             case 0x59 -> yEOR(arg0, arg1);
             case 0x5D -> xEOR(arg0, arg1);
             case 0x61 -> wordADC(arg0);
@@ -99,6 +102,7 @@ public class CPU {
             case 0x70 -> BVS(arg0);
             case 0x71 -> yWordADC(arg0);
             case 0x75 -> xMemADC(arg0);
+            case 0x78 -> SEI();
             case 0x79 -> yADC(arg0, arg1);
             case 0x7D -> xADC(arg0, arg1);
             case 0x81 -> xWordSTA(arg0);
@@ -136,6 +140,7 @@ public class CPU {
             case 0xB4 -> xMemLDY(arg0);
             case 0xB5 -> xMemLDA(arg0);
             case 0xB6 -> yMemLDX(arg0);
+            case 0xB8 -> CLV();
             case 0xB9 -> yLDA(arg0, arg1);
             case 0xBA -> TSX();
             case 0xBC -> xLDY(arg0, arg1);
@@ -147,6 +152,7 @@ public class CPU {
             case 0xCE -> DEC(arg0, arg1);
             case 0xD0 -> BNE(arg0);
             case 0xD6 -> xDEC(arg0);
+            case 0xD8 -> CLD();
             case 0xDE -> xDEC(arg0, arg1);
             case 0xE1 -> wordSBC(arg0);
             case 0xE5 -> memSBC(arg0);
@@ -159,6 +165,7 @@ public class CPU {
             case 0xF1 -> yWordSBC(arg0);
             case 0xF5 -> xMemSBC(arg0);
             case 0xF6 -> xINC(arg0);
+            case 0xF8 -> SED();
             case 0xF9 -> ySBC(arg0, arg1);
             case 0xFD -> xSBC(arg0, arg1);
             case 0xFE -> xINC(arg0, arg1);
@@ -1188,6 +1195,53 @@ public class CPU {
     // region Interrupts, Exceptions, Breakpoints
     // endregion
     // region CPU Control
+    private void CLC(){
+        setStatusRegister(0b01111111);
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+
+    private void CLI(){
+        setStatusRegister(0b11011111);
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+
+    private void CLD(){
+        setStatusRegister(0b11101111);
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+
+    private void CLV(){
+        setStatusRegister(0b11111110);
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+
+    private void SEC(){
+        P |= 0b10000000;
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+
+    private void SEI(){
+        P |= 0b00100000;
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
+    private void SED(){
+        P |= 0b00010000;
+        PC += 1;
+        debugPrint("PC: " + PC);
+        // clk(2)???
+    }
     // endregion
     // region No Operation
     // endregion
