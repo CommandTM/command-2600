@@ -42,16 +42,16 @@ public class CPU {
     private void setFlags(int val, int bits){
         P &= bits; // Zero Out Flags
         if ((bits & 0b10000000) == 0b00000000){
-            P |= (val >= 0x100 ? 0x01 : 0x00); // C
+            P |= (val >= 0x100 ? 0x80 : 0x00); // C
         }
         if ((bits & 0b01000000) == 0b00000000){
-            P |= (val != 0 ? 0x00 : 0x02); // Z
+            P |= (val != 0 ? 0x00 : 0x40); // Z
         }
         if ((bits & 0b00000010) == 0b00000000){
-            P |= (val < 0 || val > 0xFF ? 0x40 : 0x00); // V
+            P |= (val < 0 || val > 0xFF ? 0x02 : 0x00); // V
         }
         if ((bits & 0b00000001) == 0b00000000){
-            P |= (val & 0x80); // N
+            P |= ((val & 0x80) == 0x80 ? 0x01 : 0x00); // N
         }
 
         System.out.println(Integer.toBinaryString(P));

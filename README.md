@@ -8,7 +8,7 @@
 - [x] Memory
 - [x] Registers
 - [x] Instruction Parser
-- [ ] Proper Flag System
+- [x] Proper Flag System
 - [ ] OPCodes
 - [ ] Clock
 
