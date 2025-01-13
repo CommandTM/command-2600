@@ -59,14 +59,38 @@ public class CPU {
 
     public void execute(int op, int arg0, int arg1){
         switch (op) {
+            case 0x01 -> wordORA(arg0);
+            case 0x05 -> memORA(arg0);
             case 0x08 -> PHP();
+            case 0x09 -> ORA(arg0);
             case 0x0A -> ASL();
+            case 0x0D -> ORA(arg0, arg1);
             case 0x10 -> BPL(arg0);
+            case 0x11 -> yWordORA(arg0);
+            case 0x15 -> xMemORA(arg0);
+            case 0x19 -> yORA(arg0, arg1);
+            case 0x1D -> xORA(arg0, arg1);
+            case 0x21 -> wordAND(arg0);
+            case 0x25 -> memAND(arg0);
             case 0x28 -> PLP();
+            case 0x29 -> AND(arg0);
+            case 0x2D -> AND(arg0, arg1);
             case 0x30 -> BMI(arg0);
+            case 0x31 -> yWordAND(arg0);
+            case 0x35 -> xMemAND(arg0);
+            case 0x39 -> yAND(arg0, arg1);
+            case 0x3D -> xAND(arg0, arg1);
+            case 0x41 -> wordEOR(arg0);
+            case 0x45 -> memEOR(arg0);
             case 0x48 -> PHA();
+            case 0x49 -> EOR(arg0);
             case 0x4C -> JMP(arg0, arg1);
+            case 0x4D -> EOR(arg0, arg1);
             case 0x50 -> BVC(arg0);
+            case 0x51 -> yWordEOR(arg0);
+            case 0x55 -> xMemEOR(arg0);
+            case 0x59 -> yEOR(arg0, arg1);
+            case 0x5D -> xEOR(arg0, arg1);
             case 0x61 -> wordADC(arg0);
             case 0x65 -> memADC(arg0);
             case 0x68 -> PLA();
@@ -703,10 +727,223 @@ public class CPU {
     }
     // endregion
     // region Logical AND Memory with Accumulator
+    private void AND(int arg0){
+        A = A & arg0;
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(2)???
+    }
+
+    private void memAND(int arg0){
+        A = A & mem.readMem(arg0);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(3)???
+    }
+
+    private void xMemAND(int arg0){
+        A = A & mem.readMem(arg0+X);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void AND(int arg0, int arg1){
+        A = A & mem.readMem((arg1 << 8) + arg0);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void xAND(int arg0, int arg1){
+        A = A & mem.readMem(((arg1 << 8) + arg0)+X);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void yAND(int arg0, int arg1){
+        A = A & mem.readMem(((arg1 << 8) + arg0)+Y);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void wordAND(int arg0){
+        A = A & mem.readMem((mem.readMem(arg0+X+1) << 8) + mem.readMem(arg0+X));
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(6)???
+    }
+
+    private void yWordAND(int arg0){
+        A = A & mem.readMem(((mem.readMem(arg0+1) << 8) + mem.readMem(arg0))+Y);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(5)???
+    }
     // endregion
     // region Exclusive-OR Memory with Accumulator
+    private void EOR(int arg0){
+        A = A ^ arg0;
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(2)???
+    }
+
+    private void memEOR(int arg0){
+        A = A ^ mem.readMem(arg0);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(3)???
+    }
+
+    private void xMemEOR(int arg0){
+        A = A ^ mem.readMem(arg0+X);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void EOR(int arg0, int arg1){
+        A = A ^ mem.readMem((arg1 << 8) + arg0);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void xEOR(int arg0, int arg1){
+        A = A ^ mem.readMem(((arg1 << 8) + arg0)+X);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void yEOR(int arg0, int arg1){
+        A = A ^ mem.readMem(((arg1 << 8) + arg0)+Y);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void wordEOR(int arg0){
+        A = A ^ mem.readMem((mem.readMem(arg0+X+1) << 8) + mem.readMem(arg0+X));
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(6)???
+    }
+
+    private void yWordEOR(int arg0){
+        A = A ^ mem.readMem(((mem.readMem(arg0+1) << 8) + mem.readMem(arg0))+Y);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(5)???
+    }
     // endregion
     // region Logical OR Memory with Accumulator
+    private void ORA(int arg0){
+        A = A | arg0;
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(2)???
+    }
+
+    private void memORA(int arg0){
+        A = A | mem.readMem(arg0);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(3)???
+    }
+
+    private void xMemORA(int arg0){
+        A = A | mem.readMem(arg0+X);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void ORA(int arg0, int arg1){
+        A = A | mem.readMem((arg1 << 8) + arg0);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void xORA(int arg0, int arg1){
+        A = A | mem.readMem(((arg1 << 8) + arg0)+X);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void yORA(int arg0, int arg1){
+        A = A | mem.readMem(((arg1 << 8) + arg0)+Y);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void wordORA(int arg0){
+        A = A | mem.readMem((mem.readMem(arg0+X+1) << 8) + mem.readMem(arg0+X));
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(6)???
+    }
+
+    private void yWordORA(int arg0){
+        A = A | mem.readMem(((mem.readMem(arg0+1) << 8) + mem.readMem(arg0))+Y);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(5)???
+    }
     // endregion
     // region Compare
     // endregion
