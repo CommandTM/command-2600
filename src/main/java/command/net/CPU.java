@@ -120,8 +120,16 @@ public class CPU {
             case 0xC8 -> INY();
             case 0xCA -> DEX();
             case 0xD0 -> BNE(arg0);
+            case 0xE1 -> wordSBC(arg0);
+            case 0xE5 -> memSBC(arg0);
             case 0xE8 -> INX();
+            case 0xE9 -> SBC(arg0);
+            case 0xED -> SBC(arg0, arg1);
             case 0xF0 -> BEQ(arg0);
+            case 0xF1 -> yWordSBC(arg0);
+            case 0xF5 -> xMemSBC(arg0);
+            case 0xF9 -> ySBC(arg0, arg1);
+            case 0xFD -> xSBC(arg0, arg1);
             default -> System.out.println("Illegal OPcode Detected: " + op);
         }
 
@@ -622,6 +630,77 @@ public class CPU {
     }
     // endregion
     // region Subtract Memory from Accumulator with Borrow
+    private void SBC(int arg0){
+        A = A + getStatusRegister(0b10000000) - 1 - arg0;
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(2)???
+    }
+
+    private void memSBC(int arg0){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem(arg0);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(3)???
+    }
+
+    private void xMemSBC(int arg0){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem(arg0+X);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void SBC(int arg0, int arg1){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem((arg1 << 8) + arg0);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void xSBC(int arg0, int arg1){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem(((arg1 << 8) + arg0)+X);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void ySBC(int arg0, int arg1){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem(((arg1 << 8) + arg0)+Y);
+        debugPrint("A: " + A);
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(4)???
+    }
+
+    private void wordSBC(int arg0){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem((mem.readMem(arg0+X+1) << 8) + mem.readMem(arg0+X));
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(6)???
+    }
+
+    private void yWordSBC(int arg0){
+        A = A + getStatusRegister(0b10000000) - 1 - mem.readMem(((mem.readMem(arg0+1) << 8) + mem.readMem(arg0))+Y);
+        debugPrint("A: " + A);
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b00111100);
+        // clk(5)???
+    }
     // endregion
     // region Logical AND Memory with Accumulator
     // endregion

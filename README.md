@@ -14,9 +14,9 @@
 
 # OPCodes Recreation
 - [x] CPU Memory and Register Transfers ![100%](https://progress-bar.xyz/100)
-- [ ] CPU Arithmetic/Logical Operations ![7%](https://progress-bar.xyz/7)
-  - [ ] Add Memory to Accumulator with Carry ![12.5%](https://progress-bar.xyz/12)
-  - [ ] Subtract Memory from Accumulator with Borrow ![0%](https://progress-bar.xyz/0)
+- [ ] CPU Arithmetic/Logical Operations ![29%](https://progress-bar.xyz/7)
+  - [x] Add Memory to Accumulator with Carry ![100%](https://progress-bar.xyz/12)
+  - [x] Subtract Memory from Accumulator with Borrow ![100%](https://progress-bar.xyz/0)
   - [ ] Logical AND Memory with Accumulator ![0%](https://progress-bar.xyz/0)
   - [ ] Exclusive-OR Memory with Accumulator ![0%](https://progress-bar.xyz/0)
   - [ ] Logical OR Memory with Accumulator ![0%](https://progress-bar.xyz/0)
@@ -31,7 +31,7 @@
   - [ ] Rotate Right Through Carry ![0%](https://progress-bar.xyz/0)
 - [ ] CPU Jump And Control Instructions ![41%](https://progress-bar.xyz/41)
   - [ ] Normal Jumps and Subroutine Calls/Returns ![20%](https://progress-bar.xyz/20)
-  - [ ] Conditional Branches ![100%](https://progress-bar.xyz/100)
+  - [x] Conditional Branches ![100%](https://progress-bar.xyz/100)
   - [ ] Interrupts, Exceptions, Breakpoints ![0%](https://progress-bar.xyz/0)
   - [ ] CPU Control ![0%](https://progress-bar.xyz/0)
   - [ ] No Operation ![0%](https://progress-bar.xyz/0)
