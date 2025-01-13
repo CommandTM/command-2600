@@ -732,7 +732,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(2)???
     }
 
@@ -741,7 +741,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(3)???
     }
 
@@ -750,7 +750,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -759,7 +759,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -768,7 +768,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -777,7 +777,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -786,7 +786,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(6)???
     }
 
@@ -795,7 +795,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(5)???
     }
     // endregion
@@ -805,7 +805,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(2)???
     }
 
@@ -814,7 +814,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(3)???
     }
 
@@ -823,7 +823,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -832,7 +832,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -841,7 +841,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -850,7 +850,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -859,7 +859,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(6)???
     }
 
@@ -868,7 +868,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(5)???
     }
     // endregion
@@ -878,7 +878,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(2)???
     }
 
@@ -887,7 +887,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(3)???
     }
 
@@ -896,7 +896,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -905,7 +905,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -914,7 +914,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -923,7 +923,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(4)???
     }
 
@@ -932,7 +932,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(6)???
     }
 
@@ -941,7 +941,7 @@ public class CPU {
         debugPrint("A: " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        setFlags(A,  0b00111100);
+        setFlags(A,  0b10111110);
         // clk(5)???
     }
     // endregion
