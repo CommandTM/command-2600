@@ -141,19 +141,27 @@ public class CPU {
             case 0xBC -> xLDY(arg0, arg1);
             case 0xBD -> xLDA(arg0, arg1);
             case 0xBE -> yLDX(arg0, arg1);
+            case 0xC6 -> DEC(arg0);
             case 0xC8 -> INY();
             case 0xCA -> DEX();
+            case 0xCE -> DEC(arg0, arg1);
             case 0xD0 -> BNE(arg0);
+            case 0xD6 -> xDEC(arg0);
+            case 0xDE -> xDEC(arg0, arg1);
             case 0xE1 -> wordSBC(arg0);
             case 0xE5 -> memSBC(arg0);
+            case 0xE6 -> INC(arg0);
             case 0xE8 -> INX();
             case 0xE9 -> SBC(arg0);
             case 0xED -> SBC(arg0, arg1);
+            case 0xEE -> INC(arg0, arg1);
             case 0xF0 -> BEQ(arg0);
             case 0xF1 -> yWordSBC(arg0);
             case 0xF5 -> xMemSBC(arg0);
+            case 0xF6 -> xINC(arg0);
             case 0xF9 -> ySBC(arg0, arg1);
             case 0xFD -> xSBC(arg0, arg1);
+            case 0xFE -> xINC(arg0, arg1);
             default -> System.out.println("Illegal OPcode Detected: " + op);
         }
 
@@ -950,6 +958,42 @@ public class CPU {
     // region Bit Test
     // endregion
     // region Increment by One
+    private void INC(int arg0){
+        mem.writeMem(arg0, mem.readMem(arg0)+1);
+        debugPrint("MEM (" + arg0 + "): " + mem.readMem(arg0));
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(5)???
+    }
+
+    private void xINC(int arg0){
+        mem.writeMem(arg0+X, mem.readMem(arg0+X)+1);
+        debugPrint("MEM (" + arg0+X + "): " + mem.readMem(arg0+X));
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(6)???
+    }
+
+    private void INC(int arg0, int arg1){
+        mem.writeMem((arg1 << 8) + arg0, mem.readMem((arg1 << 8) + arg0)+1);
+        debugPrint("MEM (" + ((arg1 << 8) + arg0) + "): " + mem.readMem((arg1 << 8) + arg0));
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(6)???
+    }
+
+    private void xINC(int arg0, int arg1){
+        mem.writeMem((arg1 << 8) + arg0 + X, mem.readMem((arg1 << 8) + arg0 + X)+1);
+        debugPrint("MEM (" + ((arg1 << 8) + arg0 + X) + "): " + mem.readMem((arg1 << 8) + arg0 + X));
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(7)???
+    }
+
     private void INX(){
         X++;
         debugPrint("X: " + X);
@@ -969,6 +1013,42 @@ public class CPU {
     }
     // endregion
     // region Decrement by One
+    private void DEC(int arg0){
+        mem.writeMem(arg0, mem.readMem(arg0)-1);
+        debugPrint("MEM (" + arg0 + "): " + mem.readMem(arg0));
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(5)???
+    }
+
+    private void xDEC(int arg0){
+        mem.writeMem(arg0+X, mem.readMem(arg0+X)-1);
+        debugPrint("MEM (" + arg0+X + "): " + mem.readMem(arg0+X));
+        PC += 2;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(6)???
+    }
+
+    private void DEC(int arg0, int arg1){
+        mem.writeMem((arg1 << 8) + arg0, mem.readMem((arg1 << 8) + arg0)-1);
+        debugPrint("MEM (" + ((arg1 << 8) + arg0) + "): " + mem.readMem((arg1 << 8) + arg0));
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(6)???
+    }
+
+    private void xDEC(int arg0, int arg1){
+        mem.writeMem((arg1 << 8) + arg0 + X, mem.readMem((arg1 << 8) + arg0 + X)-1);
+        debugPrint("MEM (" + ((arg1 << 8) + arg0 + X) + "): " + mem.readMem((arg1 << 8) + arg0 + X));
+        PC += 3;
+        debugPrint("PC: " + PC);
+        setFlags(A,  0b10111110);
+        // clk(7)???
+    }
+
     public void DEX(){
         X--;
         debugPrint("X: " + X);

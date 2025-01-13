@@ -14,7 +14,7 @@
 
 # OPCodes Recreation
 - [x] CPU Memory and Register Transfers ![100%](https://progress-bar.xyz/100)
-- [ ] CPU Arithmetic/Logical Operations ![65%](https://progress-bar.xyz/7)
+- [ ] CPU Arithmetic/Logical Operations ![76%](https://progress-bar.xyz/7)
   - [x] Add Memory to Accumulator with Carry ![100%](https://progress-bar.xyz/12)
   - [x] Subtract Memory from Accumulator with Borrow ![100%](https://progress-bar.xyz/0)
   - [x] Logical AND Memory with Accumulator ![100%](https://progress-bar.xyz/0)
@@ -22,8 +22,8 @@
   - [x] Logical OR Memory with Accumulator ![100%](https://progress-bar.xyz/0)
   - [ ] Compare ![0%](https://progress-bar.xyz/0)
   - [ ] Bit Test ![0%](https://progress-bar.xyz/0)
-  - [ ] Increment By One ![33%](https://progress-bar.xyz/33)
-  - [ ] Decrement by One ![33%](https://progress-bar.xyz/33)
+  - [x] Increment By One ![100%](https://progress-bar.xyz/33)
+  - [x] Decrement by One ![33%](https://progress-bar.xyz/33)
 - [ ] CPU Rotate and Shift Instructions ![5%](https://progress-bar.xyz/5)
   - [ ] Shift Left Logical/Arithmetic ![20%](https://progress-bar.xyz/20)
   - [ ] Shift Right Logical ![0%](https://progress-bar.xyz/0)
