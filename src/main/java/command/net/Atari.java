@@ -15,12 +15,22 @@ public class Atari {
     }
 
     public void run(){
+        long timeStamp = 0;
+        int tiaCycles = 0;
         while(true){
-            int op = mem.readMem(cpu.PC);
-            int arg0 = mem.readMem(cpu.PC+1);
-            int arg1 = mem.readMem(cpu.PC+2);
+            if (System.nanoTime() - timeStamp > 279) {
+                timeStamp = System.nanoTime();
+                vid.draw();
+                tiaCycles++;
 
-            cpu.execute(op, arg0, arg1);
+                if (tiaCycles >= 3 & !cpu.busy) {
+                    int op = mem.readMem(cpu.PC);
+                    int arg0 = mem.readMem(cpu.PC+1);
+                    int arg1 = mem.readMem(cpu.PC+2);
+
+                    cpu.execute(op, arg0, arg1);
+                }
+            }
         }
     }
 }

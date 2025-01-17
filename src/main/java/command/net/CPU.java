@@ -10,6 +10,7 @@ public class CPU {
     int S = 0xFF;
     int P = 0b00000100;
     boolean debug = false;
+    boolean busy = false;
     Scanner pause;
     Memory mem;
 
@@ -22,13 +23,21 @@ public class CPU {
     }
 
     private void tick(int cycles) {
-        for (int i = 0; i < cycles; i++) {
-            try {
-                Thread.sleep(0, 838);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        busy = true;
+        long timeStamp = System.nanoTime();
+        Runnable run = new Runnable() {
+
+            @Override
+            public void run() {
+                while (busy) {
+                    if (System.nanoTime() - timeStamp > (cycles* 838L)) {
+                        busy = false;
+                    }
+                }
             }
-        }
+        };
+        Thread thread = new Thread(run);
+        thread.start();
     }
 
     public void debugPrint(String msg) {
