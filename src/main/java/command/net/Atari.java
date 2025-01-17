@@ -5,11 +5,13 @@ import java.io.IOException;
 public class Atari {
     Memory mem;
     CPU cpu;
+    Video vid;
 
     public Atari(String rom, boolean debug) throws IOException {
         mem = new Memory();
         cpu  = new CPU(mem, debug);
         mem.loadROM(rom);
+        vid = new Video(mem, debug);
     }
 
     public void run(){

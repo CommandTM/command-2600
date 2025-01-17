@@ -21,6 +21,16 @@ public class CPU {
         }
     }
 
+    private void tick(int cycles) {
+        for (int i = 0; i < cycles; i++) {
+            try {
+                Thread.sleep(0, 838);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void debugPrint(String msg) {
         if (debug) {
             System.out.println(msg);
@@ -54,7 +64,7 @@ public class CPU {
             P |= ((val & 0x80) == 0x80 ? 0x01 : 0x00); // N
         }
 
-        System.out.println(Integer.toBinaryString(P));
+        debugPrint(Integer.toBinaryString(P));
     }
 
     public void execute(int op, int arg0, int arg1){
@@ -71,6 +81,7 @@ public class CPU {
             case 0x18 -> CLC();
             case 0x19 -> yORA(arg0, arg1);
             case 0x1D -> xORA(arg0, arg1);
+            case 0x20 -> JSR(arg0, arg1);
             case 0x21 -> wordAND(arg0);
             case 0x25 -> memAND(arg0);
             case 0x28 -> PLP();
@@ -235,7 +246,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(Y, 0b10111110);
-        // clk(2)???
+        tick(2);
     }
 
     public void TAX(){
@@ -244,7 +255,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(X, 0b10111110);
-        // clk(2)???
+        tick(2);
     }
 
     public void TSX(){
@@ -253,7 +264,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(X, 0b10111110);
-        // clk(2)???
+        tick(2);
     }
 
     public void TYA(){
@@ -262,7 +273,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(A, 0b10111110);
-        // clk)2)???
+        tick(2);
     }
 
     public void TXA(){
@@ -271,7 +282,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(A, 0b10111110);
-        // clk)2)???
+        tick(2);
     }
 
     public void TXS(){
@@ -279,7 +290,7 @@ public class CPU {
         debugPrint("S: " + S);
         PC += 1;
         debugPrint("PC: " + PC);
-        // clk(2);
+        tick(2);
     }
 
     public void LDA(int arg0){
@@ -288,7 +299,7 @@ public class CPU {
         PC += 2;
         debugPrint("PC: " + PC);
         setFlags(A, 0b10111110);
-        // clk(2)???
+        tick(2);
     }
 
     public void LDX(int arg0){
@@ -297,7 +308,7 @@ public class CPU {
         PC += 2;
         debugPrint("PC: " + PC);
         setFlags(X, 0b10111110);
-        // clk)2)???
+        tick(2);
     }
 
     public void LDY(int arg0){
@@ -306,7 +317,7 @@ public class CPU {
         PC += 2;
         debugPrint("PC: " + PC);
         setFlags(Y, 0b10111110);
-        // clk)2)???
+        tick(2);
     }
     //endregion
     // region Load Register from Memory
@@ -451,7 +462,7 @@ public class CPU {
         debugPrint("MEM (" + arg0 + "): " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(3)???
+        tick(3);
     }
 
     public void xSTA(int arg0){
@@ -459,7 +470,7 @@ public class CPU {
         debugPrint("MEM (" + (arg0+X) + "): " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
 
     public void STA(int arg0, int arg1){
@@ -467,7 +478,7 @@ public class CPU {
         debugPrint("MEM (" + ((arg1 << 8) + arg0) + "): " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
 
     public void xSTA(int arg0, int arg1){
@@ -475,7 +486,7 @@ public class CPU {
         debugPrint("MEM (" + (((arg1 << 8) + arg0)+X) + "): " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        // clk(5)???
+        tick(5);
     }
 
     public void ySTA(int arg0, int arg1){
@@ -483,7 +494,7 @@ public class CPU {
         debugPrint("MEM (" + (((arg1 << 8) + arg0)+Y) + "): " + A);
         PC += 3;
         debugPrint("PC: " + PC);
-        // clk(5)???
+        tick(5);
     }
 
     public void xWordSTA(int arg0){
@@ -491,7 +502,7 @@ public class CPU {
         debugPrint("MEM (" + (mem.readMem(arg0 + X + 1) << 8) + mem.readMem(arg0 + X) + "): " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(6)???
+        tick(6);
     }
 
     public void yWordSTA(int arg0){
@@ -499,7 +510,7 @@ public class CPU {
         debugPrint("MEM (" + (((mem.readMem(arg0 + 1) << 8) + mem.readMem(arg0 + 1)) + Y) + "): " + A);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(6)???
+        tick(6);
     }
 
     public void STX(int arg0){
@@ -507,7 +518,7 @@ public class CPU {
         debugPrint("MEM (" + arg0 + "): " + X);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(3)???
+        tick(3);
     }
 
     public void ySTX(int arg0){
@@ -515,7 +526,7 @@ public class CPU {
         debugPrint("MEM (" + (arg0+Y) + "): " + X);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
 
     public void STX(int arg0, int arg1){
@@ -523,7 +534,7 @@ public class CPU {
         debugPrint("MEM (" + ((arg1 << 8) + arg0) + "): " + X);
         PC += 3;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
 
     public void STY(int arg0){
@@ -531,7 +542,7 @@ public class CPU {
         debugPrint("MEM (" + arg0 + "): " + Y);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(3)???
+        tick(3);
     }
 
     public void xSTY(int arg0){
@@ -539,7 +550,7 @@ public class CPU {
         debugPrint("MEM (" + (arg0+X) + "): " + Y);
         PC += 2;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
 
     public void STY(int arg0, int arg1){
@@ -547,7 +558,7 @@ public class CPU {
         debugPrint("MEM (" + ((arg1 << 8) + arg0) + "): " + Y);
         PC += 3;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
     // endregion
     // region Push/Pull
@@ -558,7 +569,7 @@ public class CPU {
         debugPrint("S: " + S);
         PC += 1;
         debugPrint("PC: " + PC);
-        // clk(3)???
+        tick(3);
     }
 
     public void PHP(){
@@ -568,7 +579,7 @@ public class CPU {
         debugPrint("S: " + S);
         PC += 1;
         debugPrint("PC: " + PC);
-        // clk(3)???
+        tick(3);
     }
 
     public void PLA(){
@@ -579,7 +590,7 @@ public class CPU {
         PC += 1;
         debugPrint("PC: " + PC);
         setFlags(A, 0b10111110);
-        // clk(4)???
+        tick(4);
     }
 
     public void PLP(){
@@ -589,7 +600,7 @@ public class CPU {
         debugPrint("P: " + P);
         PC += 1;
         debugPrint("PC: " + PC);
-        // clk(4)???
+        tick(4);
     }
     // endregion
     // endregion
@@ -1098,9 +1109,17 @@ public class CPU {
     // region CPU Jump and Control Instructions
     // region Normal Jumps & Subroutine Calls/Returns
     private void JMP(int arg0, int arg1){
-        PC = (arg0 << 8) + arg1;
+        PC = (arg1 << 8) + arg0;
         debugPrint("PC: " + PC);
         // clk(3)???
+    }
+
+    private void JSR(int arg0, int arg1){
+        S = PC + 2;
+        debugPrint("S: " + S);
+        PC = (arg1 << 8) + arg0;
+        debugPrint("PC: " + PC);
+        tick(6);
     }
     // endregion
     // region Conditional Branches
